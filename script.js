@@ -9,6 +9,7 @@ function renderTodo(todo) {
 
   if (todo.deleted) {
     item.remove();
+    if (todoItems.length === 0) list.innerHTML = "";
     return;
   }
 
@@ -107,5 +108,3 @@ function deleteTodo(key) {
   todoItems = todoItems.filter((item) => item.id !== Number(key));
   renderTodo(todo);
 }
-
-
