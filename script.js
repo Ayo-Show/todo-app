@@ -2,6 +2,7 @@
 let todoItems = [];
 
 function renderTodo(todo) {
+  localStorage.setItem("todoItemsRef", JSON.stringify(todoItems));
   const list = document.querySelector(".js-todo-list");
 
   // select the current todo item in the DOM
@@ -108,3 +109,15 @@ function deleteTodo(key) {
   todoItems = todoItems.filter((item) => item.id !== Number(key));
   renderTodo(todo);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ref = localStorage.getItem("todoItemsRef");
+  if (ref) {
+    todoItems = JSON.parse(ref);
+    todoItems.forEach((t) => {
+      renderTodo(t);
+    });
+  }
+});
+
+
